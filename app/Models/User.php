@@ -49,6 +49,6 @@ class User extends Authenticatable
      */
     public function quotes(): HasMany
     {
-        return $this->hasMany(Quotes::class);
+        return $this->hasMany(Quote::class);
     }
 }

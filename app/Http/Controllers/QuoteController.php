@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Quote;
 use App\Http\Resources\QuoteResource;
+use Auth;
 
 class QuoteController extends Controller
 {
@@ -18,8 +19,8 @@ class QuoteController extends Controller
     public function index()
     {
         //
-        $quotes = Quote::with('user')->latest()->get();
-        return response()->json([QuoteResource::collection($quotes), 'Quotes fetched']);
+        $quotes = Quote::with('user')->latest()->paginate(20);
+        return response()->json( $quotes );
     }
 
     /**
@@ -30,6 +31,19 @@ class QuoteController extends Controller
     public function create()
     {
         //
+        // $request->validate([
+            // 'name' =>'required|string',
+            // 'title' => 'required|string'
+        // ]);
+
+        // $quote->name = $request->name;
+        // $quote->title = $request->title;
+        // $input = $request->all();
+
+        // auth()->user()->create($input);
+        // $this->create($input);
+
+        // return response()->json(['quotes' => $quote, 200]);
     }
 
     /**
@@ -40,7 +54,20 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //
+    //    $request->validate([
+    //     'name' =>'required|string',
+    //     'title' => 'required|string'
+    // ]);
+
+    $quote = new Quote;
+    $quote->user_id = Auth::user()->id;
+    $quote->title = $request->title;
+
+    $quote->save();
+
+    // return $quote;
+    return response()->json(['data' => $quote, 'status' => 200]);
     }
 
     /**
