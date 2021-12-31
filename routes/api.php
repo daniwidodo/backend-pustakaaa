@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Models\User;
 use App\Models\Quote;
 use App\Models\Book;
@@ -21,7 +20,7 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    Route::get('/profile', function(Request $request) {
+    Route::get('/profile', function() {
         return auth()->user();
     });
 
@@ -35,7 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     /*
     Get all quotes by current login user!
     */
-    Route::get('/user-all-quotes', function (Request $request) {
+    Route::get('/user-all-quotes', function () {
         $user_quotes = User::with('quotes')->find(Auth::id())->latest()->paginate(20);
 
         return response()->json($user_quotes);
