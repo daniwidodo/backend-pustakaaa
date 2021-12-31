@@ -22,4 +22,9 @@ class Quote extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
 }

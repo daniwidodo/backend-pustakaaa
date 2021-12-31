@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleIdToUsersTable extends Migration
+class AddRelationToQuotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class AddRoleIdToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('quotes', function (Blueprint $table) {
             //
-            $table->foreignId('role_id')
-                ->references('id')
-                ->on('roles')
-                ->onDelete('cascade')
-                ->nullable();
+            $table->foreignId('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
         });
     }
 
@@ -30,7 +28,7 @@ class AddRoleIdToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('quotes', function (Blueprint $table) {
             //
         });
     }

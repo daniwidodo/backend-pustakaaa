@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRolesDetailsTable extends Migration
+class AddRowsToBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddRolesDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::table('roles', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             //
-            $table->string('title');
         });
     }
 
@@ -26,7 +25,7 @@ class AddRolesDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::table('roles', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             //
         });
     }

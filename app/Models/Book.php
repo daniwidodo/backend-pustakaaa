@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function quote()
+    {
+        return $this->belongsTo(Quote::class);
+    }
 }
+
+

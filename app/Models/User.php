@@ -47,7 +47,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function quotes(): HasMany
+    public function quotes()
     {
         return $this->hasMany(Quote::class);
     }

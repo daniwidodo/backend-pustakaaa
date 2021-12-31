@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Validator;
-use App\Models\Quote;
-use App\Http\Resources\QuoteResource;
-use Auth;
 
-class QuoteController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +14,6 @@ class QuoteController extends Controller
     public function index()
     {
         //
-        $quotes = Quote::with('user')->latest()->paginate(20);
-        return response()->json( $quotes );
     }
 
     /**
@@ -31,19 +24,6 @@ class QuoteController extends Controller
     public function create()
     {
         //
-        // $request->validate([
-            // 'name' =>'required|string',
-            // 'title' => 'required|string'
-        // ]);
-
-        // $quote->name = $request->name;
-        // $quote->title = $request->title;
-        // $input = $request->all();
-
-        // auth()->user()->create($input);
-        // $this->create($input);
-
-        // return response()->json(['quotes' => $quote, 200]);
     }
 
     /**
@@ -54,20 +34,12 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-    //
-    //    $request->validate([
-    //     'name' =>'required|string',
-    //     'title' => 'required|string'
-    // ]);
+        //
+        $newImageName = time() . '-'
+            . $request->file('image')->getClientOriginalName();
 
-    $quote = new Quote;
-    $quote->user_id = Auth::user()->id;
-    $quote->nama_quote = $request->nama_quote;
+        return response()->json($newImageName);
 
-    $quote->save();
-
-    // return $quote;
-    return response()->json(['data' => $quote, 'status' => 200]);
     }
 
     /**
@@ -114,5 +86,4 @@ class QuoteController extends Controller
     {
         //
     }
-
 }
