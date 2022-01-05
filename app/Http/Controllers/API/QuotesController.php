@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class QuotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +16,9 @@ class BookController extends Controller
     public function index()
     {
         //
+        $quotes = Quote::latest()->paginate(10);
+
+        return response()->json( $quotes, 200);
     }
 
     /**
@@ -35,10 +40,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        $newImageName = time() . '-'
-            . $request->file('image')->getClientOriginalName();
-
-        return response()->json($newImageName);
     }
 
     /**

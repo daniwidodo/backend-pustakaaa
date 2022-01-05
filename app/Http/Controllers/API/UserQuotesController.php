@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class UserQuotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,10 +36,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        $newImageName = time() . '-'
-            . $request->file('image')->getClientOriginalName();
-
-        return response()->json($newImageName);
     }
 
     /**
