@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     //
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
@@ -34,7 +35,8 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
@@ -44,7 +46,7 @@ class AuthController extends Controller
         $user = User::where('email', $fields['email'])->first();
 
         // Check password
-        if(!$user || !Hash::check($fields['password'], $user->password)) {
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Bad creds'
             ], 401);
@@ -60,11 +62,39 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function logout(Request $request) {
+    public function logout()
+    {
         auth()->user()->tokens()->delete();
 
         return [
             'message' => 'Logged out'
         ];
+    }
+
+    public function update($id, Request $request)
+    {
+
+        //validator place
+
+        $users = user::find($id);
+        $users->name = $request->name;
+        // $users->thumbnail = $request->avatar->store('avatars', 'public');
+        $users->save();
+
+        $data[] = [
+            'id' => $users->id,
+            'name' => $users->name,
+            // 'avatar' => Storage::url($users->thumbnail),
+            // 'status' => 200,
+        ];
+
+        return response()->json($data);
+    }
+
+    public function view($id) 
+    {
+        $user = User::findOrFail($id);
+
+        return response($user);
     }
 }

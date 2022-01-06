@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
+    Route::put('/users/{id}', [App\Http\Controllers\AuthController::class, 'update']);
+    Route::get('/users/{id}', [App\Http\Controllers\AuthController::class, 'view']);
+
 
     ///// USER-QUOTES ///////
 
