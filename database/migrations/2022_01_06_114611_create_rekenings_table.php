@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRelationToQuotesTable extends Migration
+class CreateRekeningsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class AddRelationToQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::table('quotes', function (Blueprint $table) {
-            //
-            $table->foreignId('user_id')
-            ->references('id')->on('users')
-            ->onDelete('cascade');
+        Schema::create('rekenings', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -28,8 +27,6 @@ class AddRelationToQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::table('quotes', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('rekenings');
     }
 }

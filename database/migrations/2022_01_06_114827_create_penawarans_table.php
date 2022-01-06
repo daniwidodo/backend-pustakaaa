@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRowsToBooksTable extends Migration
+class CreatePenawaransTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddRowsToBooksTable extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
+        Schema::create('penawarans', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddRowsToBooksTable extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('penawarans');
     }
 }

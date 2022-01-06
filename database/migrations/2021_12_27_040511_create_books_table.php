@@ -15,10 +15,16 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_buku');
-            $table->string('nomor_isbn');
-            $table->string('foto_sampul');
-            $table->string('foto_samping');
+            $table->string('title');
+            $table->string('isbn');
+            $table->string('penulis');
+            $table->string('jumlah_halaman');
+            $table->string('foto_depan');
+            $table->string('foto_belakang');
+            $table->string('foto_sisi_atas');
+            $table->string('foto_sisi_bawah');
+            $table->string('foto_sisi_bukaan');
+            $table->string('foto_sisi_punggung');
             $table->timestamps();
         });
     }

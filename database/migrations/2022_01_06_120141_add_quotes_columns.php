@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRowsToQuotesTable extends Migration
+class AddQuotesColumns extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,11 @@ class AddRowsToQuotesTable extends Migration
     {
         Schema::table('quotes', function (Blueprint $table) {
             //
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
+
+            $table->unsignedBigInteger('penawaran_id');
+            $table->foreign('penawaran_id')->references('id')->on('penawarans');
         });
     }
 

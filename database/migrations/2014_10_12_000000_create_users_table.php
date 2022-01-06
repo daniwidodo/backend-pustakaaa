@@ -22,6 +22,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            //
+            $table->string('handphone')->nullable();
+            $table->string('alamat_pickup')->nullable();
+            $table->string('avatar')->nullable();
+            //
         });
     }
 

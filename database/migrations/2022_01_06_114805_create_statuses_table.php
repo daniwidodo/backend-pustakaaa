@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRelationToBooksTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class AddRelationToBooksTable extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
-            $table->foreignId('quote_id')
-            ->references('id')->on('quotes')
-            ->onDelete('cascade');
-
+        Schema::create('statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -29,8 +27,6 @@ class AddRelationToBooksTable extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('statuses');
     }
 }
