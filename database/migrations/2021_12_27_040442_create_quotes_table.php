@@ -19,6 +19,7 @@ class CreateQuotesTable extends Migration
             $table->string('harga');
             $table->string('bukti_transfer');
             $table->string('nomor_resi');
+            $table->enum('status',['review','terima','tolak'])->default('review');
             $table->timestamps();
         });
 

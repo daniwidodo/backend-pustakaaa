@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('handphone')->nullable();
             $table->string('alamat_pickup')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('nomer_rekening')->nullable();
+            $table->enum('nama_bank',['bca','bri','mandiri', 'bni'])->default('bca');
+            $table->enum('roles',['admin','user','tolak'])->default('user');
             //
         });
     }

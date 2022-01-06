@@ -15,8 +15,7 @@ class AddUserColumns extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('rekening_id');
-            $table->foreign('rekening_id')->references('id')->on('rekenings');
+
         });
     }
 

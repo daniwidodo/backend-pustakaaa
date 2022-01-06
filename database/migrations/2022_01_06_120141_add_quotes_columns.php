@@ -15,11 +15,7 @@ class AddQuotesColumns extends Migration
     {
         Schema::table('quotes', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('statuses');
 
-            $table->unsignedBigInteger('penawaran_id');
-            $table->foreign('penawaran_id')->references('id')->on('penawarans');
         });
     }
 

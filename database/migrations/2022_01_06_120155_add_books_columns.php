@@ -15,8 +15,8 @@ class AddBooksColumns extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('quote_id');
-            $table->foreign('quote_id')->references('id')->on('quotes');
+            $table->unsignedBigInteger('quote_id')->nullable();
+            $table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade');
         });
     }
 

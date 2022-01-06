@@ -25,6 +25,7 @@ class CreateBooksTable extends Migration
             $table->string('foto_sisi_bawah');
             $table->string('foto_sisi_bukaan');
             $table->string('foto_sisi_punggung');
+            $table->enum('penawaran',['review','terima','tolak'])->default('review');
             $table->timestamps();
         });
     }
