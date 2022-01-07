@@ -76,7 +76,7 @@ class AuthController extends Controller
 
         //validator place
 
-        $users = user::find($id);
+        $users = user::findOrFail($id);
         $users->name = $request->name;
         // $users->thumbnail = $request->avatar->store('avatars', 'public');
         $users->save();
