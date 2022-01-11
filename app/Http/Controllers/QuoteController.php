@@ -18,7 +18,9 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        //
+        // $user = auth()->user();
+        // $id = auth()->user()->id;
+
         $quotes = Quote::with('user')->latest()->paginate(20);
         return response()->json( $quotes );
     }

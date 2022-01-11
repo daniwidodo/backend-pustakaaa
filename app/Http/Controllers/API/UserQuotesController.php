@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use App\Models\Quote;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,6 +15,12 @@ class UserQuotesController extends Controller
     public function index()
     {
         //
+        // $user = auth()->user();
+        // $id = auth()->user()->id;
+
+        $quotes = Quote::with('user')->latest()->paginate(20);
+        return response()->json( $quotes );
+        // return 'index';
     }
 
     /**
@@ -36,6 +42,17 @@ class UserQuotesController extends Controller
     public function store(Request $request)
     {
         //
+        // $user = auth()->user();
+        // $id = auth()->user()->id;
+
+        $quote = new Quote;
+        // $quote->user_id = auth()->user()->id;
+        $quote->nama_quote = $request->nama_quote;
+
+    // $quote->save();
+
+    return $quote;
+    // return response()->json(['data' => $quote, 'status' => 200]);
     }
 
     /**

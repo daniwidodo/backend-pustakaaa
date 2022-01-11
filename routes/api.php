@@ -23,8 +23,6 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    ///// USERS API ///////////
-
     Route::get('/users', function () {
         return auth()->user();
     });
@@ -32,8 +30,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/users/{id}', [App\Http\Controllers\AuthController::class, 'update']);
     Route::get('/users/{id}', [App\Http\Controllers\AuthController::class, 'view']);
 
+    Route::apiResource('/user_quotes', App\Http\Controllers\API\UserQuotesController::class);
 
-    ///// USER-QUOTES ///////
+
 
 
 
