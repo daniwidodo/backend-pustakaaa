@@ -15,6 +15,7 @@ class UserBooksController extends Controller
     public function index()
     {
         //
+        return 'user books';
     }
 
     /**

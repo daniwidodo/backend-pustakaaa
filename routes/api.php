@@ -32,9 +32,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::apiResource('/user_quotes', App\Http\Controllers\API\UserQuotesController::class);
 
+    Route::apiResource('/user_books', App\Http\Controllers\API\UserBooksController::class);
 
+    Route::apiResource('/quotes', App\Http\Controllers\API\QuotesController::class);
 
-
+    Route::apiResource('/books', App\Http\Controllers\API\BooksController::class);
 
 
 });
