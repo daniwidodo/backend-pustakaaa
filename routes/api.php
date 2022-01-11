@@ -35,9 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     ///// USER-QUOTES ///////
 
-    ///// USER-QUOTES ///////
 
-    ///// USER-QUOTES ///////
 
 
 });

@@ -79,6 +79,11 @@ class QuoteController extends Controller
     public function show($id)
     {
         //
+        // Get article
+        $quote = Quote::findOrFail($id);
+
+        // Return single article as a resource
+        return response()->json($quote);
     }
 
     /**
@@ -113,6 +118,14 @@ class QuoteController extends Controller
     public function destroy($id)
     {
         //
+        $quote = Quote::findOrFail($id);
+
+        if ($quote->delete()) {
+            return new ArticleResource($quote);
+        }
+
+        return response()->json($quote, 'record deleted');
+
     }
 
 }

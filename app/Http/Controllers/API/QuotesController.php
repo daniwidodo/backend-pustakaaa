@@ -16,7 +16,7 @@ class QuotesController extends Controller
     public function index()
     {
         //
-        $quotes = Quote::latest()->paginate(10);
+        $quotes = Quote::with('user')->latest()->paginate(10);
 
         return response()->json( $quotes, 200);
     }
@@ -40,6 +40,14 @@ class QuotesController extends Controller
     public function store(Request $request)
     {
         //
+        $quote = new Quote;
+        $quote->user_id = Auth::user()->id;
+        $quote->nama_quote = $request->nama_quote;
+
+        $quote->save();
+
+        // return $quote;
+        return response()->json(['data' => $quote, 'status' => 200]);
     }
 
     /**
