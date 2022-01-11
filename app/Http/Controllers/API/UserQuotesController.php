@@ -46,7 +46,7 @@ class UserQuotesController extends Controller
         // $id = auth()->user()->id;
 
         $quote = new Quote;
-        // $quote->user_id = auth()->user()->id;
+        $quote->user_id = auth()->user()->id;
         $quote->nama_quote = $request->nama_quote;
 
     // $quote->save();
