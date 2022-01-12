@@ -47,12 +47,12 @@ class UserQuotesController extends Controller
 
         $quote = new Quote;
         $quote->user_id = auth()->user()->id;
-        $quote->nama_quote = $request->nama_quote;
+        $quote->title = $request->title;
 
-    // $quote->save();
+        $quote->save();
 
-    return $quote;
-    // return response()->json(['data' => $quote, 'status' => 200]);
+    // return $quote;
+        return response()->json(['data' => $quote, 'status' => 200]);
     }
 
     /**
@@ -64,6 +64,9 @@ class UserQuotesController extends Controller
     public function show($id)
     {
         //
+        $quote = Quote::with('books')->findOrFail($id);
+
+        return response()->json(['data' => $quote]);
     }
 
     /**
@@ -87,6 +90,9 @@ class UserQuotesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $quote = Quote::find($id)->update($request->all());
+
+        return response()->json([ 'data' => $request ,'result' => $quote, 'status :' =>200 ]);
     }
 
     /**
@@ -98,5 +104,14 @@ class UserQuotesController extends Controller
     public function destroy($id)
     {
         //
+        $quote = Quote::findOrFail($id);
+
+        // if ($quote->delete())
+        // {
+        //     return $quote;
+        // };
+
+        return null;
+        // return $quote;
     }
 }

@@ -16,9 +16,9 @@ class CreateQuotesTable extends Migration
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('harga');
-            $table->string('bukti_transfer');
-            $table->string('nomor_resi');
+            $table->string('harga')->nullable();
+            $table->string('bukti_transfer')->nullable();
+            $table->string('nomor_resi')->nullable();
             $table->enum('status',['review','terima','tolak'])->default('review');
             $table->timestamps();
         });
